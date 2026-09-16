@@ -3,37 +3,47 @@
 #include <windows.h> // acentuação
 #include <math.h>
 #include <time.h> 
-#define MAX 101 
+#define MAX 9999 
 
 //----------------PREENCHER------------------//
 
 void encherVetor( int *vetor, int *qntd){
 
     int altura;
-    int i = 0; 
     char continuar = 'S'; 
     
-    while (continuar == 'S'){
+    while (continuar == 'S' && *qntd < MAX){
 
         do{
       
         printf("Olá, atleta! Digite sua altura em cm: ");
         scanf("%d", &altura); 
-        vetor[i] = altura; 
 
-        } while (altura < 215 || altura > 145 );
+        } while (altura > 215 || altura < 140 );
 
+        vetor[*qntd] = altura;
+        (*qntd)++;  
+
+        if (*qntd < MAX)
+        {
+        
         do{
 
         printf("Deseja continuar (S/N)?: ");
-        scanf("%c", &continuar);
+        scanf(" %c", &continuar);
             
-        } while (continuar != 'S' && continuar != 'N');
+        } while (continuar != 'S' && continuar != 'N' && *qntd < MAX);
+            
+        }
         
-        i++;
-        (*qntd)++; 
+        
     }    
 }
+
+//----------------PREENCHER------------------//
+
+
+
 
 //----------------PROGRAMA PRINCIPAL------------------//
 
@@ -50,3 +60,5 @@ int main(){
 
     return 0; 
 }
+
+//TERMINAR ISSO OUTRO DIA
