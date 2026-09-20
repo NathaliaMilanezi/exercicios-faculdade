@@ -4,6 +4,57 @@
 
 #define MAX 100
 
+//----------------MENU------------------//
+
+int menu() {
+        int op;
+
+        printf("\n\n----- MENU DE OPERAÇÕES -----");
+        printf("\n\n0 - Sair");
+        printf("\n\n1 - União (A U B)");
+        printf("\n2 - Interseção (A ∩ B)");
+        printf("\n3 - Diferença (A - B)");
+        printf("\n4 - Diferença (B - A)");
+        printf("\n5 - Diferença Simétrica (A ∆ B)");
+    
+        printf("\n\nInsira a opção equivalente a operação que deseja realizar: ");
+        scanf("%d", &op);
+        return op;
+}
+
+
+//----------------LISTAR------------------//
+
+void listar (int *vetor, int quant) {
+    int i;
+    for (i = 0; i < quant; i++) {
+        printf("%d ", vetor[i]);
+    }
+    printf("\n\n");
+}
+
+//----------------PESQUISAR------------------//
+
+int pesquisar(int *conj, int qntd,  int pesq){
+
+    int i; 
+
+    // conj -> onde vou procurar (só um vetor, não dois)
+    // qntd -> quantos elementos esse vetor tem
+    // pesq -> O Número que estou procurando lá dentro
+
+    for (i = 0; i < qntd; i++){
+
+        if(conj[i] == pesq){
+
+            return i; // achei o número procurado nessa posição
+                      // devolve a posição onde achou 
+        }
+
+    }
+    return -1; // percorreu tudo e não achou -> retorna -1 
+}
+
 //----------------LER CONJUNTOS------------------//
 
 void lerConjuntos(int *conj, int *qntd){
@@ -40,31 +91,133 @@ void lerConjuntos(int *conj, int *qntd){
 
 //----------------UNIÃO------------------//
 
-//----------------PROGRAMA PRINCIPAL------------------//
+void uniao(int *conjA, int qntdA, int *conjB, int qntdB, int *conjRes, int *qntdRes){
+ 
+    int i; 
+    *qntdRes = 0;
 
-int menu() {
-        int op;
+    for ( i = 0; i < qntdB; i++)
+    {
+            conjRes[*qntdRes] = conjB[i]; 
+            (*qntdRes)++;  
 
-        printf("\n\n----- MENU DE OPERAÇÕES -----");
-        printf("\n\n0 - Sair");
-        printf("\n\n1 - União (A U B)");
-        printf("\n2 - Interseção (A ∩ B)");
-        printf("\n3 - Diferença (B - A)");
-        printf("\n4 - Diferença (A - B)");
-        printf("\n5 - Diferença Simétrica (A ∆ B)");
-    
-        printf("\n\nInsira a opção equivalente a operação que deseja realizar: ");
-        scanf("%d", &op);
-        return op;
-}
-
-void listar (int *vetor, int quant) {
-    int i;
-    for (i = 0; i < quant; i++) {
-        printf("%d ", vetor[i]);
     }
-    printf("\n\n");
+    
+    for ( i = 0; i < qntdA; i++)
+    {
+        if (pesquisar(conjB, qntdB, conjA[i]) == -1){
+
+            conjRes[*qntdRes] = conjA[i]; 
+            (*qntdRes)++;  
+
+        }
+    }
+
+    printf("Conjunto resultado: ");
+    listar(conjRes, *qntdRes);
+    
+
 }
+
+//----------------INTERSEÇÃO------------------//
+
+void intersecao(int *conjA, int qntdA, int *conjB, int qntdB, int *conjRes, int *qntdRes){
+
+    int i; 
+    *qntdRes = 0;
+
+    for ( i = 0; i < qntdA; i++)
+    {
+        if (pesquisar(conjB, qntdB, conjA[i]) != -1){
+
+            conjRes[*qntdRes] = conjA[i]; 
+            (*qntdRes)++;  
+
+        }
+    }
+
+    printf("Conjunto resultado: ");
+    listar(conjRes, *qntdRes);
+    
+}
+
+//----------------DIFERENÇA B - A------------------//
+
+void diferencaBA(int *conjA, int qntdA, int *conjB, int qntdB, int *conjRes, int *qntdRes){
+
+    int i; 
+    *qntdRes = 0;
+
+    for ( i = 0; i < qntdB; i++)
+    {
+        if (pesquisar(conjA, qntdA, conjB[i]) == -1){
+
+            conjRes[*qntdRes] = conjB[i]; 
+            (*qntdRes)++;  
+
+        }
+    }
+
+    printf("Conjunto resultado: ");
+    listar(conjRes, *qntdRes);
+    
+}
+
+//----------------DIFERENÇA A - B------------------//
+
+void diferencaAB(int *conjA, int qntdA, int *conjB, int qntdB, int *conjRes, int *qntdRes){
+
+    int i; 
+    *qntdRes = 0;
+
+    for ( i = 0; i < qntdA; i++)
+    {
+        if (pesquisar(conjB, qntdB, conjA[i]) == -1){
+
+            conjRes[*qntdRes] = conjA[i]; 
+            (*qntdRes)++;  
+
+        }
+    }
+
+    printf("Conjunto resultado: ");
+    listar(conjRes, *qntdRes);
+    
+}
+
+//----------------DIFERENÇA SIMÉTRICA------------------//
+
+void diferencaST(int *conjA, int qntdA, int *conjB, int qntdB, int *conjRes, int *qntdRes){
+
+    int i; 
+    *qntdRes = 0;
+
+    for ( i = 0; i < qntdA; i++)
+    {
+        if (pesquisar(conjB, qntdB, conjA[i]) == -1){
+
+            conjRes[*qntdRes] = conjA[i]; 
+            (*qntdRes)++;  
+
+        }
+    }
+
+    for ( i = 0; i < qntdB; i++)
+    {
+        if (pesquisar(conjA, qntdA, conjB[i]) == -1){
+
+            conjRes[*qntdRes] = conjB[i]; 
+            (*qntdRes)++;  
+
+        }
+    }
+
+    printf("Conjunto resultado: ");
+    listar(conjRes, *qntdRes);
+
+}
+
+//----------------PROGRAMA PRINCIPAL------------------//
 
 int main() {
 
@@ -96,23 +249,23 @@ int main() {
                 break;
             case 1:
                 printf("\n\nUnião de A e B: ");
- //               uniao(...);
+                uniao(conjA, qntdA, conjB, qntdB, conjRes, &qntdRes);
                 break;
             case 2:
                 printf("\n\nInterseção de A e B: ");
- //               intersecao(...);
+                intersecao(conjA, qntdA, conjB, qntdB, conjRes, &qntdRes);
                 break;
             case 3:
                 printf("\n\nDiferença de A - B: ");
- //               diferenca(...);
+                diferencaAB(conjA, qntdA, conjB, qntdB, conjRes, &qntdRes);
                 break;
             case 4:
                 printf("\n\nDiferença de B - A: ");
- //               diferenca(...);
+                diferencaBA(conjA, qntdA, conjB, qntdB, conjRes, &qntdRes);
                 break;
             case 5:
                 printf("\n\nDiferença Simétrica de A ∆ B: ");
- //               diferencaSimetrica(...);
+                diferencaST(conjA, qntdA, conjB, qntdB, conjRes, &qntdRes);
                 break;
             default:
                 printf("\n\nOpção inválida! Tente novamente.");
