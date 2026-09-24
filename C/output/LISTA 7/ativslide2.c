@@ -25,15 +25,50 @@ void transformar(char vetor[], int qntd){
     char mes[MAXSTR]; 
     char ano[MAXSTR]; 
     
-    int i; 
-    char p; 
+    int i = 0; //para percorrer o vetor
+    char p = 0; //para ser o contador das posições do vetor
 
-    for ( i = 0; vetor[i] != '/'; i++)
-    {
-        p = i; 
+    //--PRIMEIRO SEPARAR O DIA
+    
+    while (vetor[i] != '/'){
+        
+        dia[p] = vetor[i]; 
+        i++;
+        p++; 
     }
     
-    printf("A primeira %s foi encontrada na posição %d", p, i);
+    dia[p] = '/0'; //coloco a /0 para criar um vetor dia. 
+
+    //--AGORA SEPARAR O MÊS 
+
+    i++; //pula a barra e vai para a próxima posição de pesquisa
+    p = 0; 
+    
+    while (vetor[i] != '/'){
+        
+        mes[p] = vetor[i];
+        i++; 
+        p++; 
+
+    }
+    
+    mes[p] = '/0'; 
+
+    i++; 
+    
+
+    //--SEPARANDO O ANO
+
+    while ()
+    {
+        /* code */
+    }
+    
+
+    
+    
+    
+    printf("%d/%d/%d", ano, mes, dia);
 
 }
 
@@ -45,7 +80,7 @@ int main(){
     int qntd; 
 
     lerVetor(vetor, &qntd); 
-    transformar(vetor, qntd); 
+    transformar(vetor); 
 
 
     return 0; 
