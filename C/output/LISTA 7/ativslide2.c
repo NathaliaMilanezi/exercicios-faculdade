@@ -64,10 +64,6 @@ void transformar(char vetor[], int qntd){
         /* code */
     }
     
-
-    
-    
-    
     printf("%d/%d/%d", ano, mes, dia);
 
 }
