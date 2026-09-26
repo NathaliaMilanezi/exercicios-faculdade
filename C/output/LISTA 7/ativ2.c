@@ -26,7 +26,7 @@ void transformar(char vetor[], int qntd){
     char ano[MAXSTR]; 
     
     int i = 0; //para percorrer o vetor
-    char p = 0; //para ser o contador das posições do vetor
+    int p = 0; //para ser o contador das posições do vetor
 
     //--PRIMEIRO SEPARAR O DIA
     
@@ -37,7 +37,7 @@ void transformar(char vetor[], int qntd){
         p++; 
     }
     
-    dia[p] = '/0'; //coloco a /0 para criar um vetor dia. 
+    dia[p] = '\0'; //coloco a /0 para criar um vetor dia. 
 
     //--AGORA SEPARAR O MÊS 
 
@@ -52,23 +52,23 @@ void transformar(char vetor[], int qntd){
 
     }
     
-    mes[p] = '/0'; 
+    mes[p] = '\0'; 
+
+    // ano
 
     i++; 
-    
+    p = 0; 
 
-    //--SEPARANDO O ANO
-
-    while ()
+    while (i < qntd)
     {
-        /* code */
+        ano[p] = vetor[i]; 
+        i++;
+        p++;
     }
-    
 
+    ano[p] = '\0'; 
     
-    
-    
-    printf("%d/%d/%d", ano, mes, dia);
+    printf("%s/%s/%s", ano, mes, dia);
 
 }
 
@@ -80,7 +80,7 @@ int main(){
     int qntd; 
 
     lerVetor(vetor, &qntd); 
-    transformar(vetor); 
+    transformar(vetor, qntd); 
 
 
     return 0; 
