@@ -70,6 +70,7 @@ void transformar(char vetor[], int qntd){
     
     printf("%s/%s/%s", ano, mes, dia);
 
+
 }
 
 //----------------PROGRAMA PRINCIPAL------------------//
