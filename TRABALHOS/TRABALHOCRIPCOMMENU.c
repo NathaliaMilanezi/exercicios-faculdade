@@ -6,6 +6,8 @@
 #include <time.h> 
 #define MAXSTR 9999 
 
+//ALUNA: NATHÁLIA DE OLIVEIRA MILANEZI - V04
+
 //----------------LIMPAR BUFFER------------------//
 
 void limparBuffer(){
