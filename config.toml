@@ -1,0 +1,4 @@
+[mcp_servers.Roblox_Studio]
+command = 'CAMINHO_COMPLETO_DO_StudioMCP.exe'
+args = []
+startup_timeout_sec = 30
