@@ -10,8 +10,8 @@
 
 struct Ponto {
 
-    int x; 
-    int y; 
+    float x; 
+    float y; 
     char cor[20]; 
 
 };
@@ -23,10 +23,10 @@ typedef struct Ponto Ponto;
 void lerPonto(Ponto *p){
 
     printf("Digite o ponto X: ");
-    scanf("%d", &p->x); 
+    scanf("%f", &p->x); 
 
     printf("Digite o ponto Y: "); 
-    scanf("%d", &p->y);
+    scanf("%f", &p->y);
     
 }
 
@@ -40,11 +40,11 @@ void lerCor(Ponto *p){
 
 //----------------IMPRIMIR------------------//
 
-void imprimir(Ponto *p){
+void imprimir(Ponto p){
 
-    printf("Ponto X: %d\n", p->x);
-    printf("Ponto Y: %d\n", p->y);
-    printf("Cor: %s\n", p->cor);
+    printf("Ponto X: %f\n", p.x);
+    printf("Ponto Y: %f\n", p.y);
+    printf("Cor: %s\n", p.cor);
 
 }
 
@@ -59,7 +59,7 @@ int main(){
 
     lerPonto(&pont); 
     lerCor(&pont);
-    imprimir(&pont);  
+    imprimir(pont);  
 
     return 0; 
 }
