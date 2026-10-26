@@ -100,10 +100,27 @@ void mostrarReta(Reta *r){
 
 void lerCirculo(Circulo *c){
 
-    lerPonto(&c->centro); 
-    lerCor(&c->cor); 
-    
-    printf("Digite o raio: ")
+  printf("\nCentro do círculo:\n");
+  lerPonto(&c->centro);
+
+  printf("\nDigite o raio: ");
+  scanf("%f", &c->raio);
+  limparBuffer();
+
+  printf("\nCor do círculo:\n");
+  lerCor(c->cor);
+
+}
+
+// Mostrar Círculo
+
+void mostrarCirculo(Circulo c){
+
+  printf("Círculo:");
+  mostrarPonto(&c.centro);
+  printf("\nRaio: %.2f\n", c.raio);
+  printf("Cor: %s", c.cor); 
+
 }
 
 //----------------PROGRAMA PRINCIPAL------------------//
@@ -117,10 +134,13 @@ int main(){
   lerReta(&r);
 
   printf("\n");
+  
   mostrarPonto(&r.pt1);
   mostrarPonto(&r.pt2);
   mostrarReta(&r);
 
-  lerCirculo(&c.centro); 
+  lerCirculo(&c); 
+  mostrarCirculo(c);
+
   return 0;
 }
