@@ -1,65 +1,64 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <windows.h> // acentuação
 #include <math.h>
 #include <string.h>
-#include <time.h> 
-#define MAXSTR 9999 
-
-//----------------STRUCT PONTO------------------//
+#include <time.h>
+#define MAXSTR 50
 
 struct Ponto {
-
-    float x; 
-    float y; 
-    char cor[20]; 
-
+  float x;
+  float y;
+  char cor[MAXSTR];
 };
 
-typedef struct Ponto Ponto; 
+typedef struct Ponto Ponto;
 
-//----------------LER PONTO------------------//
-
-void lerPonto(Ponto *p){
-
-    printf("Digite o ponto X: ");
-    scanf("%f", &p->x); 
-
-    printf("Digite o ponto Y: "); 
-    scanf("%f", &p->y);
-    
-}
-
-//----------------LER COR------------------//
-
-void lerCor(Ponto *p){
-
-    printf("Digite a cor: ");
-    scanf("%19s", p->cor); 
-}
-
-//----------------IMPRIMIR------------------//
-
-void imprimir(Ponto p){
-
-    printf("Ponto X: %f\n", p.x);
-    printf("Ponto Y: %f\n", p.y);
-    printf("Cor: %s\n", p.cor);
-
+//Limpar Buffer
+void limparBuffer(){
+    int c;
+    while ((c = getchar()) != '\n' && c != EOF);
 }
 
 
-//----------------PROGRAMA PRINCIPAL------------------//
+// Ler Ponto
+void lerPonto(Ponto *pt){
 
-int main(){ 
-    
-    SetConsoleOutputCP(65001);
-    
-    Ponto pont; 
+  printf("Digite o valor do ponto x: ");
+  scanf("%f", &pt->x);
 
-    lerPonto(&pont); 
-    lerCor(&pont);
-    imprimir(pont);  
+  printf("Digite o valor do ponto y: ");
+  scanf("%f", &pt->y);
+  limparBuffer();
+}
 
-    return 0; 
+//Ler Cor
+
+void lerCor(Ponto *pt, int *qntdC){
+
+  printf("Digite a cor: ");
+  fgets(pt->cor, MAXSTR, stdin);
+
+  *qntdC = strlen(pt->cor);
+  pt->cor[*qntdC - 1] = '\0';
+
+}
+
+//Mostrar Ponto
+void mostrarPonto(Ponto *pt){
+
+printf("Ponto 1: (%.2f, %.2f) - Cor: %s", pt->x, pt->y, pt->cor);
+}
+
+//Programa Principal
+int main(){
+
+  Ponto pt;
+  int qntdC;
+
+  lerPonto(&pt);
+  lerCor(&pt, &qntdC);
+
+  mostrarPonto(&pt);
+
+  return 0;
 }
