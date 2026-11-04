@@ -1,0 +1,4 @@
+Primeira linha do arquivo
+Segunda linha do arquivo
+Número: 2.76   
+Total: 5.80
