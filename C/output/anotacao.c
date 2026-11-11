@@ -40,3 +40,5 @@ int main(){
 // w -> cria um arquivo novo ou apaga tudo que tem dentro do arquivo
 // a -> abre para escrever no final do arquivo (cria se não existir)
 
+
+
